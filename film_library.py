@@ -48,6 +48,10 @@ def search(title,list):
 def generate_views(list):
     random.choice(list).views_num = random.randrange(1,101)
 
+def generate_view_10_times(list):
+    for i in range(10):
+        generate_views(list)
+
 library = []
 
 film1 = Film("Pulp Fiction", 1994, "Crime", 1000)
@@ -83,6 +87,14 @@ for i in library:
     print(f'{i.title}: {i.views_num}')
 generate_views(library)
 print('\nLista po zmianie liczby odtworzeń losowego elementu:')
+for i in library:
+    print(f'{i.title}: {i.views_num}')
+
+print('\nLista przed uruchomieniem generate_views 10 razy:')
+for i in library:
+    print(f'{i.title}: {i.views_num}')
+generate_view_10_times(library)
+print('\nLista po uruchomieniem generate_views 10 razy:')
 for i in library:
     print(f'{i.title}: {i.views_num}')
 
