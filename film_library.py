@@ -41,3 +41,36 @@ def search(title,list):
             print(f'Film o tytule {title} znajduje się w bibliotece')
         else:
             print(f'Film o tytule {title} nie znajduje się w bibliotece')
+
+
+library = []
+
+film1 = Film("Pulp Fiction", 1994, "Crime", 1000)
+film2 = Film("The Matrix", 1999, "Sci-Fi", 850)
+film3 = Film("Inception", 2010, "Sci-Fi", 1200)
+film4 = Film("The Godfather", 1972, "Crime", 900)
+
+serial1 = Series(1, 5, "The Simpsons", 1989, "Comedy", 1000)
+serial2 = Series(1, 6, "Stranger Things", 1989, "Comedy", 980)
+serial3 = Series(2, 1, "Peaky Blinders", 1990, "Comedy", 950)
+serial4 = Series(1, 1, "The Umbrella Academy", 2008, "Drama", 1300)
+serial5 = Series(1, 2, "Friends", 2008, "Drama", 1250)
+serial6 = Series(2, 1, "The Office", 2009, "Drama", 1150)
+
+library.extend([
+    film1, film2, film3, film4,
+    serial1, serial2, serial3,
+    serial4, serial5, serial6
+])
+
+movies = get_movies(library)
+for i in movies:
+    print (i)
+
+print('')
+
+series = get_series(library)
+for i in series:
+    print (i)
+
+print('')
