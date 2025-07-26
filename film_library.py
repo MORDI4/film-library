@@ -1,4 +1,5 @@
 import random
+import logging
 
 class Film():
     def __init__(self,title,release_year, genre, views_num):
@@ -24,6 +25,10 @@ class Series(Film):
     def __str__(self):
         return f'{self.title} S{self.season_num:02}E{self.episode_num:02}'
     
+    def __eq__(self, other):
+        return self.title == other.title and self.episode_num == other.episode_num and self.season_num == other.season_num
+    
+
 def get_objects(list, object_class):
     objects = []
     for i in list:
@@ -56,6 +61,13 @@ def top_titles(list, num, content_type):
     selected = [i for i in list if type(i) == content_type]
     selected.sort(reverse=True,key = lambda x: x.views_num)
     return selected[0:num]
+
+def add_whole_season(list, title, release_date, genre, season_num, episodes_num):
+    series = [i for i in list if type(i) == Series]
+    for i in range(1,(episodes_num + 1)):
+        ep_to_add = Series(i,season_num,title,release_date,genre,0)
+        if not ep_to_add in series:
+            list.append(ep_to_add)
 
 library = []
 
@@ -109,3 +121,16 @@ print(f'\n{n} najpopularniejsze pozycje z kategorii {t.__name__}: ')
 top = top_titles(library,n,t)
 for i in top:
     print(i.title)
+
+title = 'Friends'
+r_date = 2010
+g = 'Action'
+s_num = 2
+eps_num = 30
+add_whole_season(library,title, r_date, g, s_num, eps_num)
+
+print(f'\nDodanie {eps_num} odcinków sezonu {s_num} serialu {title}: ')
+for i in library:
+    if i.title == title:
+        print(i)
+
