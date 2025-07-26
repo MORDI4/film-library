@@ -1,5 +1,5 @@
 import random
-import logging
+import datetime
 
 class Film():
     def __init__(self,title,release_year, genre, views_num):
@@ -69,6 +69,8 @@ def add_whole_season(list, title, release_date, genre, season_num, episodes_num)
         if not ep_to_add in series:
             list.append(ep_to_add)
 
+print("Biblioteka filmów")
+
 library = []
 
 film1 = Film("Pulp Fiction", 1994, "Crime", 1000)
@@ -89,48 +91,19 @@ library.extend([
     serial4, serial5, serial6
 ])
 
-movies = get_movies(library)
-for i in movies:
-    print (i)
 
-print('')
-
-series = get_series(library)
-for i in series:
-    print (i)
-
-print('\nLista przed zmianą liczby odtworzeń losowego elementu:')
-for i in library:
-    print(f'{i.title}: {i.views_num}')
 generate_views(library)
-print('\nLista po zmianie liczby odtworzeń losowego elementu:')
-for i in library:
-    print(f'{i.title}: {i.views_num}')
 
-print('\nLista przed uruchomieniem generate_views 10 razy:')
-for i in library:
-    print(f'{i.title}: {i.views_num}')
-generate_view_10_times(library)
-print('\nLista po uruchomieniem generate_views 10 razy:')
-for i in library:
-    print(f'{i.title}: {i.views_num}')
-
-n = 4
-t = Series
-print(f'\n{n} najpopularniejsze pozycje z kategorii {t.__name__}: ')
-top = top_titles(library,n,t)
-for i in top:
+today = (datetime.datetime.now()).strftime('%d.%m.%Y')
+print(f'Najpopularniejsze filmy i seriale dnia {today}')
+print('\nFILMY')
+top_films = top_titles(library,3,Film)
+for i in top_films:
     print(i.title)
 
-title = 'Friends'
-r_date = 2010
-g = 'Action'
-s_num = 2
-eps_num = 30
-add_whole_season(library,title, r_date, g, s_num, eps_num)
+print('\nSERIALE')  
+top_series = top_titles(library,3,Series)
+for i in top_series:
+    print(i.title)
 
-print(f'\nDodanie {eps_num} odcinków sezonu {s_num} serialu {title}: ')
-for i in library:
-    if i.title == title:
-        print(i)
 
