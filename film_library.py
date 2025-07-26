@@ -52,6 +52,11 @@ def generate_view_10_times(list):
     for i in range(10):
         generate_views(list)
 
+def top_titles(list, num, content_type):
+    selected = [i for i in list if type(i) == content_type]
+    selected.sort(reverse=True,key = lambda x: x.views_num)
+    return selected[0:num]
+
 library = []
 
 film1 = Film("Pulp Fiction", 1994, "Crime", 1000)
@@ -98,3 +103,9 @@ print('\nLista po uruchomieniem generate_views 10 razy:')
 for i in library:
     print(f'{i.title}: {i.views_num}')
 
+n = 4
+t = Series
+print(f'\n{n} najpopularniejsze pozycje z kategorii {t.__name__}: ')
+top = top_titles(library,n,t)
+for i in top:
+    print(i.title)
