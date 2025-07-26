@@ -1,3 +1,5 @@
+import random
+
 class Film():
     def __init__(self,title,release_year, genre, views_num):
         self.title = title
@@ -10,6 +12,7 @@ class Film():
     
     def play(self):
         self.views_num += 1
+    
 
 
 class Series(Film):
@@ -42,6 +45,8 @@ def search(title,list):
         else:
             print(f'Film o tytule {title} nie znajduje się w bibliotece')
 
+def generate_views(list):
+    random.choice(list).views_num = random.randrange(1,101)
 
 library = []
 
@@ -73,4 +78,11 @@ series = get_series(library)
 for i in series:
     print (i)
 
-print('')
+print('\nLista przed zmianą liczby odtworzeń losowego elementu:')
+for i in library:
+    print(f'{i.title}: {i.views_num}')
+generate_views(library)
+print('\nLista po zmianie liczby odtworzeń losowego elementu:')
+for i in library:
+    print(f'{i.title}: {i.views_num}')
+
